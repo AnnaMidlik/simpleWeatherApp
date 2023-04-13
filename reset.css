@@ -1,0 +1,49 @@
+:root {
+  --bg_main: #0a1f44;
+  --text_light: #fff;
+  --text_med: #53627c;
+  --text_dark: #1e2432;
+  --red: #ff1e42;
+  --darkred: #c3112d;
+  --orange: #ff8c00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  appearance: none;
+}
+
+button,
+input {
+  border: none;
+  background: none;
+  outline: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font: 16px "Roboto", sans-serif;
+  background: url(wave.svg) no-repeat bottom;
+  /* background: linear-gradient(270deg, rgba(38, 70, 83, 1) 0%, rgba(42, 157, 143, 1) 38%, rgba(233, 196, 106, 1) 66%, rgba(244, 162, 97, 1) 89%, rgba(231, 111, 81, 1) 100%); */
+  min-height: 100vh;
+}

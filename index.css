@@ -61,30 +61,6 @@ search-section form input::placeholder {
   color: red;
 }
 
-@media screen and (max-width: 700px) {
-  .search-section form {
-    flex-direction: column;
-  }
-
-  .search-section form input,
-  .search-section form button {
-    width: 100%;
-  }
-
-  .search-section form button {
-    margin: 20px 0 0 0;
-  }
-
-  .search-section form .msg {
-    position: static;
-    max-width: none;
-    min-height: 0;
-    margin-top: 10px;
-  }
-}
-
-
-
 .results-section {
   width: 90%;
   margin: 50px 0 20px;
@@ -151,12 +127,42 @@ search-section form input::placeholder {
 }
 
 @media screen and (max-width: 700px) {
+  .search-section form {
+    flex-direction: column;
+  }
+
+  .search-section form input,
+  .search-section form button {
+    width: 100%;
+  }
+
+  .search-section form button {
+    margin: 20px 0 0 0;
+  }
+
+  .search-section form .msg {
+    position: static;
+    max-width: none;
+    min-height: 0;
+    margin-top: 10px;
+  }
+
   .results-section .cities {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 500px) {
+  .header {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .search-section form input,
+  .search-section form button {
+    width: 80%;
+  }
+
   .results-section .cities {
     grid-template-columns: repeat(1, 1fr);
   }

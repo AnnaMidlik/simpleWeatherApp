@@ -10,17 +10,21 @@ form.addEventListener("submit", e => {
   let inputVal = input.value
   //request section
   const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${inputVal}&aqi=yes`;
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      //check unique results 
+  async function fetchData() {
+    try {
+      let response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Please search for a valid city')
+      }
+      const data = await response.json();
+      //check same request
       let index = citiesArray.findIndex(el => el.name.toLowerCase() === input.value.toLowerCase())
       if (index !== -1) {
-        return msg.innerHTML = 'You already searched this sity'
+        throw new Error('You already searched this sity')
       } else {
         msg.innerHTML = ''
       }
-      //catch data
+      //add new data
       const newCity = {
         name: data.location.name,
         temp_c: data.current.temp_c,
@@ -30,25 +34,27 @@ form.addEventListener("submit", e => {
       citiesArray.push(newCity)
       let markup = citiesArray.map(el => {
         return `
-        <li class = 'city'>
-        <figure>
-        <img class="city-icon" src="${el.condition.icon}" alt="${el.condition.text}">
-        <figcaption class="city-temp"> ${el.temp_c} <sup>°</sup></figcaption>
-        </figure>
-        <h2 class="city-name" data-name="${el.name}">
-          ${el.name}
-        </h2>
-          <span class="city-condition">
-          ${el.condition.text} 
-          </span>
-        </li>`
+      <li class = 'city'>
+      <figure>
+      <img class="city-icon" src="${el.condition.icon}" alt="${el.condition.text}">
+      <figcaption class="city-temp"> ${el.temp_c} <sup>°</sup></figcaption>
+      </figure>
+      <h2 class="city-name" data-name="${el.name}">
+        ${el.name}
+      </h2>
+        <span class="city-condition">
+        ${el.condition.text} 
+        </span>
+      </li>`
       }
       ).join('');
       list.innerHTML = markup;
-    })
-    .catch((e) => {
-      msg.innerHTML = "Please search for a valid city 😩"
-    });
+
+    } catch (error) {
+      msg.innerHTML = error.message
+    }
+  }
+  fetchData()
 });
 
 
